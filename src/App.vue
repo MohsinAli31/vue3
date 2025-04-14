@@ -5,6 +5,8 @@
   import CounterComponent from '@/components/ClassesAndStyles/Counter.vue';
   import WatchComp from '@/components/watchers/watchComp.vue';
   import LifeCycle from '@/components/LifeCycleHook/LifeCycleHook.vue';
+  import TemplateRef from '@/components/TemplateRef/TemplateRef.vue';
+  import CompProp from '@/components/CompProps/CompProps.vue';
 
 //  below is syntax is optional api
 
@@ -39,7 +41,9 @@
   <h2>2: Now classes and styles here </h2>
   <CounterComponent /> -->
   <!-- <WatchComp /> -->
-  <LifeCycle />
+  <!-- <LifeCycle /> -->
+   <TemplateRef />
+   <CompProp />
 
 </template>
 
