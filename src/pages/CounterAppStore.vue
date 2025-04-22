@@ -23,7 +23,7 @@
   
 <script setup>
   import { useCounterStore } from '@/stores/counterStore'
-  import { useUserStore, stor } from '@/stores/userStore'
+  import { useUserStore } from '@/stores/userStore'
   import { storeToRefs } from 'pinia'
 
   // we can not destruct like this 
