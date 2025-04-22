@@ -1,5 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import CounterAppStore from '@/pages/CounterAppStore.vue'
 
 const router = useRouter()
 
@@ -11,4 +12,8 @@ const router = useRouter()
 <template>
   <h2>HomeView</h2>
   <button @click="goToAbout">Go to About</button>
+
+  <!-- COunter APP -->
+
+   <CounterAppStore />
 </template>
