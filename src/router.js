@@ -9,16 +9,19 @@ import NotFoundPage from '@/pages/NotFoundPage.vue'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import AdminLogin from '@/layouts/AdminLogin.vue'
 import login from '@/pages/Login.vue'
+import ProfileView from '@/pages/ProfileView.vue'
 
 const routes = [
     {
         path: '/',
         component: DefaultLayout,
+        meta: { requiresAuth: true },
         children: [
         //   { path: '', component: AdminOverview },
         { path: '', component: HomeView },
         { path: 'about', component: AboutView },
         { path: 'my/project', component: ProjectPage },
+        { path: 'ProfileView', component: ProfileView },
         { path: 'products', component: Productspage },
         { path: 'product-preview/:slug', component: ProductPreviewPage },
         ], 
@@ -37,12 +40,23 @@ const routes = [
   { path: '/:pathMatch(.*)*', name: "NotFound", component: NotFoundPage }
 
 
-
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+})
+
+function isAuthenticated() {
+  return !!localStorage.getItem('authToken')  // or however you manage auth
+}
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && !isAuthenticated()) {
+    next('/login')  // Redirect to login if not authenticated
+  } else {
+    next()  // Proceed to route
+  }
 })
 
 export default router 
