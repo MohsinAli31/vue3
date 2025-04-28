@@ -10,6 +10,7 @@ import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import AdminLogin from '@/layouts/AdminLogin.vue'
 import login from '@/pages/Login.vue'
 import ProfileView from '@/pages/ProfileView.vue'
+import AuthMiddleware from './middleware/auth';
 
 const routes = [
     {
@@ -47,12 +48,8 @@ const router = createRouter({
   routes,
 })
 
-function isAuthenticated() {
-  return !!localStorage.getItem('authToken')  // or however you manage auth
-}
-
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !isAuthenticated()) {
+  if (to.meta.requiresAuth && !AuthMiddleware()) {
     next('/login')  // Redirect to login if not authenticated
   } else {
     next()  // Proceed to route
